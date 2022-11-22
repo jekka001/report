@@ -14,8 +14,7 @@
 	<name>report</name>
 	<description>automatic generation of accounting reports</description>
 	<properties>
-		<maven.compiler.source>8</maven.compiler.source>
-		<maven.compiler.target>8</maven.compiler.target>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,13 +44,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>11.0.2</version>
-		</dependency>
 	</dependencies>
-
 
 	<build>
 		<plugins>
