@@ -1,7 +1,7 @@
 package ua.kpi.report.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,7 +83,7 @@ public class HomePage {
         for (int i = 0; i < select.size(); i++) {
             select.set(i, ((String) select.get(i)).replace("\t", ", "));
         }
-        ObservableList<ObservableList<String>> selectedRow = FXCollections.observableArrayList();
+//        ObservableList<ObservableList<String>> selectedRow = FXCollections.observableArrayList();
         employers
                 .stream()
                 .filter(employer -> select.contains(employer.getFields().toString().replace("[", "").replace("]", "")))
@@ -92,9 +92,9 @@ public class HomePage {
 
 
         int rowIndex = 0;
-        for (ObservableList<String> listOfRowData : selectedRow) {
-            rowIndexToRowCells.put(rowIndex++, listOfRowData);
-        }
+//        for (ObservableList<String> listOfRowData : selectedRow) {
+//            rowIndexToRowCells.put(rowIndex++, listOfRowData);
+//        }
 
         return rowIndexToRowCells;
     }
