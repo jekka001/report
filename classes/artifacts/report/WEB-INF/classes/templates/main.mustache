@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"/>
+    <link href="/default.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/fonts.css" rel="stylesheet" type="text/css" media="all"/>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="header-wrapper">
+        <div id="header" class="container">
+            <div id="logo">
+                <h1><a href="#">AutoGen</a></h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="page" class="container">
+        <div>
+            <div class="title">
+                <form method="post" action="loadNewTemplate" enctype="multipart/form-data">
+                    <div class="center">
+                        <label for="word" class="button">Choose template to upload</label>
+                        <input type="file" style="visibility: hidden;display: flex;" id="word" name="word" multiple
+                               accept=".docx">
+                    </div>
+                    <div class="center">
+                        <button class="button">Upload</button>
+                    </div>
+                </form>
+
+                <form id="gener" method="post" action="generateWord">
+                    <div class="container">
+                        <select class="box" id="template" name="template" form="gener">
+                            {{>layout/template}}
+                        </select>
+                        <select id ="select" name="select" style="opacity: 0" multiple>
+                        </select>
+                           <!--<p>-->
+                        <table class="TableListJS" id="entries">
+                            <tbody style="height: 20em;width: 60em;">
+                            <tr>{{#title}}
+                                <th class="tableTH">{{.}}</th>
+                            {{/title}}</tr>
+                           <!--</p>-->
+                            <!--<select id="select" name="select" multiple form="gener">-->
+
+                        {{#employers}}
+                                <tr>
+                                    {{#fields}}
+                                        <td >{{.}}</td>
+                                    {{/fields}}
+                                </tr>
+                            {{/employers}}
+                            <!--</select>-->
+                            </tbody>
+                        </table>
+                        <div>
+                            <button type="submit" class="sendEthButton btn button" >Create Report</button>
+                        </div>
+                    </div>
+                </form>
+                <button class="enableEthereumButton">Say thanks:) Connect to Metamask</button>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="portfolio-wrapper">
+        <div id="portfolio" class="container">
+
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.
+        Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
+<script type="application/javascript">
+    const ethereumButton = document.querySelector('.enableEthereumButton');
+    const sendEthButton = document.querySelector('.sendEthButton');
+
+    let accounts = [];
+
+    //Sending Ethereum to an address
+    sendEthButton.addEventListener('click', function () {
+        ethereum
+                .request({
+                    method: 'eth_sendTransaction',
+                    params: [
+                        {
+                            from: accounts[0],
+                            to: '0xA6bD7df83120D515Cd591496a402f066E988Ab21',
+                            value: '0x174876E800',
+                            gasPrice: '0x186A0',
+                            gas: '0x186A0',
+                        },
+                    ],
+                })
+                .then(function (txHash) {
+                    console.log(txHash)
+                })
+                .catch(function (error) {
+                    console.error
+                });
+        setTimeout(function () {
+            console.log("money");
+        }, 2000);
+    });
+
+    ethereumButton.addEventListener('click', function () {
+        getAccount();
+    });
+
+    async function getAccount() {
+        accounts = await ethereum.request({method: 'eth_requestAccounts'});
+    }
+</script>
+
+<script type="text/javascript">
+    window.onload=function(){
+        tableHighlightRow();
+    }
+    var select = document.getElementById("select");
+    var option = null;
+
+    function tableHighlightRow() {
+        if (document.getElementById && document.createTextNode) {
+            var tables = document.getElementsByTagName('table');
+            for (var i = 0; i < tables.length; i++) {
+                if (tables[i].className === 'TableListJS') {
+                    var trs = tables[i].getElementsByTagName('tr');
+                    for (var j = 0; j < trs.length; j++) {
+                        if (trs[j].parentNode.nodeName === 'TBODY' && trs[j].firstElementChild.nodeName !== 'TH') {
+                            trs[j].onmouseover = function () {
+                                // 'highlight' color is set in tablelist.css
+                                if (this.className === '') {
+                                    this.className = 'highlight';
+                                }
+                            }
+                            trs[j].onmouseout = function () {
+                                if (this.className === 'highlight') {
+                                    this.className = '';
+                                }
+                            }
+                            trs[j].onmousedown = function () {
+                                //
+                                // Toggle the selected state of this row
+                                //
+                                // 'clicked' color is set in tablelist.css.
+                                if (this.className !== 'clicked') {
+                                    // Clear previous selection
+
+                                    // Mark this row as selected
+                                    this.className = 'clicked';
+
+                                    option = document.createElement("option");
+                                    option.value = this.innerText;
+                                    option.setAttribute("selected", "");
+                                    select.appendChild(option);
+                                } else {
+                                    this.className = '';
+                                    var optionIter = select.getElementsByTagName('option');
+                                    for (var p = 0; p < optionIter.length; p++) {
+                                        if (optionIter[p].value == this.innerText) {
+                                            select.removeChild(optionIter[p]);
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
