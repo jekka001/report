@@ -105,6 +105,14 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.8</version>
+				<configuration>
+					<mainClass>hellofx/org.openjfx.App</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
