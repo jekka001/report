@@ -31,11 +31,6 @@
 			<version>5.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>org.wildfly.swarm</groupId>
-			<artifactId>javafx</artifactId>
-			<version>2016.10.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
