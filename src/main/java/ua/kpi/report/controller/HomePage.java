@@ -43,7 +43,7 @@ public class HomePage {
 
     @GetMapping("res")
     public String resources(Model model){
-        return "redirect:resources/";
+        return "redirect:resources";
     }
 
     @PostMapping("uploadFile")
