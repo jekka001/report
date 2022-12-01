@@ -101,9 +101,12 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.openjfx</groupId>
+				<groupId>com.zenjava</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
-				<version>0.0.8</version>
+				<version>8.1.3</version>
+				<configuration>
+					<mainClass>com.demo.helloWorld</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
