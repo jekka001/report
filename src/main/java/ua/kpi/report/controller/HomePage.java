@@ -41,6 +41,11 @@ public class HomePage {
         return "index";
     }
 
+    @GetMapping("res")
+    public String resources(Model model){
+        return "redirect:resources/";
+    }
+
     @PostMapping("uploadFile")
     public String loadFile(@RequestParam("file") MultipartFile multipartFile, Model model) throws IOException {
         file = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
